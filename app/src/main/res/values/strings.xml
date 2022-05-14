@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">DakbayaKnow Admin</string>
+    <string name="my_applications">My Applications</string>
+    <string name="health_declaration_form">Health Declaration Form</string>
+    <string name="travel_permit">Travel Permit</string>
+    <string name="dk">dk</string>
+
+    <string name="profile">Profile</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">DakbayaKnow</string>
+    <string name="nav_header_subtitle">dakbayaknow.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">My Profile</string>
+    <string name="menu_about">About DakbayaKnow</string>
+    <string name="menu_logout">Logout</string>
+    <string name="title_activity_main">MainActivity</string>
+
+</resources>
