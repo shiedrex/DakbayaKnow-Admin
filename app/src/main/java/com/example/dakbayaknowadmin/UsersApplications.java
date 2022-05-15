@@ -6,8 +6,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +25,7 @@ public class UsersApplications extends AppCompatActivity {
     ArrayList<Applications> list;
     RecyclerView recyclerView;
     SearchView searchView;
+    AdapterClassApplications adapterClassApplications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,58 +38,26 @@ public class UsersApplications extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference().child("applications");
         ref.keepSynced(true);
         recyclerView = findViewById(R.id.rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchView = findViewById(R.id.searchView);
 
-        if(ref!=null){
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()) {
-                        list = new ArrayList<>();
-                        for(DataSnapshot ds : snapshot.getChildren()){
-                            list.add(ds.getValue(Applications.class));
-                        }
-                        AdapterClassApplications adapterClass = new AdapterClassApplications(list, getApplicationContext());
-                        recyclerView.setAdapter(adapterClass);
-                    }
-                }
+        FirebaseRecyclerOptions<Applications> options = new FirebaseRecyclerOptions.Builder<Applications>()
+                .setQuery(ref, Applications.class)
+                .build();
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(UsersApplications.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        if(searchView!=null){
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    search(s);
-                    return false;
-                }
-            });
-        }
-
+        adapterClassApplications = new AdapterClassApplications(options);
+        recyclerView.setAdapter(adapterClassApplications);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        adapterClassApplications.startListening();
     }
-    private void search(String str) {
-        ArrayList<Applications> myList = new ArrayList<>();
-        for (Applications object : list) {
-            if(object.getFullname().toLowerCase().contains(str.toLowerCase())){
-                myList.add(object);
-            }
-        }
-        AdapterClassApplications adapterClass = new AdapterClassApplications(myList, getApplicationContext());
-        recyclerView.setAdapter(adapterClass);
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapterClassApplications.stopListening();
     }
 }

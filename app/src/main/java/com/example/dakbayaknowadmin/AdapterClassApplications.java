@@ -1,5 +1,6 @@
 package com.example.dakbayaknowadmin;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +20,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,16 +37,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AdapterClassApplications extends RecyclerView.Adapter<AdapterClassApplications.myViewHolder> {
+public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applications, AdapterClassApplications.myViewHolder> {
     ArrayList<Applications> list;
     Context context;
     Dialog dialog;
     DatabaseReference appref;
     FirebaseAuth fAuth;
 
-    public AdapterClassApplications(ArrayList<Applications> list, Context context) {
-        this.list = list;
-        this.context = context;
+    public AdapterClassApplications(@NonNull FirebaseRecyclerOptions<Applications> options) {
+        super(options);
     }
 
     @NonNull
@@ -52,16 +56,16 @@ public class AdapterClassApplications extends RecyclerView.Adapter<AdapterClassA
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.us.setText(list.get(position).getFullname());
-        holder.des.setText(list.get(position).getDestination());
-        holder.stat.setText(list.get(position).getStatus());
-        holder.heal.setText(list.get(position).getHealth());
-        holder.trav.setText(list.get(position).getTravellerType());
-        holder.orig.setText(list.get(position).getOrigin());
-        holder.travDate.setText(list.get(position).getDeparture());
-        holder.arrivDate.setText(list.get(position).getArrival());
-        holder.govid.setText(list.get(position).getGovId());
+    public void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Applications model) {
+        holder.us.setText(model.getFullname());
+        holder.des.setText(model.getDestination());
+        holder.stat.setText(model.getStatus());
+        holder.heal.setText(model.getHealth());
+        holder.trav.setText(model.getTravellerType());
+        holder.orig.setText(model.getOrigin());
+        holder.travDate.setText(model.getDeparture());
+        holder.arrivDate.setText(model.getArrival());
+        holder.govid.setText(model.getGovId());
 
         if (holder.heal.getText().toString().contains("Safe")) {
             holder.heal.setTextColor(Color.parseColor("#008000"));
@@ -72,15 +76,55 @@ public class AdapterClassApplications extends RecyclerView.Adapter<AdapterClassA
         if (holder.stat.getText().toString().contains("Please upload required requirements (vaccinated)")) {
             holder.stat.setTextColor(Color.parseColor("#008000"));
         } else if (holder.stat.getText().toString().contains("Please upload required requirements (unvaccinated)")) {
-            holder.stat.setTextColor(Color.parseColor("#FFFF00"));
+            holder.stat.setTextColor(Color.parseColor("#FFA500"));
         } else if (holder.stat.getText().toString().contains("Pending")) {
             holder.stat.setTextColor(Color.parseColor("#FFFF00"));
+        } else if (holder.stat.getText().toString().contains("Approved")) {
+            holder.stat.setTextColor(Color.parseColor("#008000"));
+        } else if (holder.stat.getText().toString().contains("Declined")) {
+            holder.stat.setTextColor(Color.parseColor("#FF0000"));
         }
-    }
 
-    @Override
-    public int getItemCount() {
-        return list.size();
+        holder.app.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HashMap<String, Object> user = new HashMap<>();
+                user.put("status", "Approved");
+
+                FirebaseDatabase.getInstance().getReference().child("applications")
+                        .child(getRef(position).getKey()).updateChildren(user)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(holder.stat.getContext(), "Application Approved", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(holder.stat.getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+        holder.dec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HashMap<String, Object> user = new HashMap<>();
+                user.put("status", "Declined");
+
+                FirebaseDatabase.getInstance().getReference().child("applications")
+                        .child(getRef(position).getKey()).updateChildren(user)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(holder.stat.getContext(), "Application Declined", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(holder.stat.getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
     }
 
     class myViewHolder extends RecyclerView.ViewHolder {
@@ -102,14 +146,6 @@ public class AdapterClassApplications extends RecyclerView.Adapter<AdapterClassA
             dec = itemView.findViewById(R.id.decline);
 
             dialog = new Dialog(itemView.getContext());
-
-            app.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    String stat = "Approved";
-//                    updateStatus(stat);
-                }
-            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

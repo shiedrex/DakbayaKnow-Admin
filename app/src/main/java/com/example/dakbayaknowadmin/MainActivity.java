@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity{
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(MainActivity.this, Login.class));
+                        finish();
                     }
                 });
                 builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
