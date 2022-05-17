@@ -92,10 +92,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/travellerTypeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="140dp"
@@ -114,10 +114,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/originLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="140dp"
@@ -136,10 +136,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/travelDateLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="140dp"
@@ -158,10 +158,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/arrivalDateLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="140dp"
@@ -180,10 +180,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/govIdLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="140dp"
@@ -199,6 +199,46 @@
                 android:fontFamily="@font/nexalight"
                 android:padding="10dp"
                 android:text="Gov Id" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/govIdImageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nexalight"
+                android:padding="10dp"
+                android:text="Gov Id Photo" />
+
+            <ImageView
+                android:id="@+id/govIdImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vaccCardImageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nexalight"
+                android:padding="10dp"
+                android:text="Vacc Card Photo" />
+
+            <ImageView
+                android:id="@+id/vaccCardImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -221,7 +261,7 @@
             <Button
                 android:id="@+id/decline"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nexablack"

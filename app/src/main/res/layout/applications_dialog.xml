@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         app:cardCornerRadius="16dp">
 
@@ -28,9 +28,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexablack"
-                    android:layout_marginEnd="10dp"
                     android:text="User:"
                     android:textSize="18dp" />
 
@@ -52,9 +52,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Health:"
                     android:textSize="14dp" />
 
@@ -76,9 +76,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Status:"
                     android:textSize="14dp" />
 
@@ -95,9 +95,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nexablack"
-                android:layout_marginEnd="10dp"
                 android:text="Traveller Information"
                 android:textSize="14dp" />
 
@@ -109,9 +109,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Traveller Type:"
                     android:textSize="14dp" />
 
@@ -133,9 +133,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Origin:"
                     android:textSize="14dp" />
 
@@ -157,9 +157,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Destination:"
                     android:textSize="14dp" />
 
@@ -181,9 +181,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Date of Travel:"
                     android:textSize="14dp" />
 
@@ -205,9 +205,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Date of Expected Arrival:"
                     android:textSize="14dp" />
 
@@ -224,9 +224,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nexablack"
-                android:layout_marginEnd="10dp"
                 android:text="Documents Uploaded"
                 android:textSize="14dp" />
 
@@ -238,9 +238,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nexalight"
-                    android:layout_marginEnd="10dp"
                     android:text="Government ID:"
                     android:textSize="14dp" />
 
@@ -272,11 +272,7 @@
                     android:text="Ok"
                     android:textColorLink="#FFC107" />
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

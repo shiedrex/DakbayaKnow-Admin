@@ -10,12 +10,14 @@ public class Applications {
     private String departure;
     private String arrival;
     private String govId;
+    private String govIdImage;
+    private String vaccCardImage;
 
     public Applications() {
 
     }
 
-    public Applications(String fullname, String destination, String status, String health, String travellerType, String origin, String departure, String arrival, String govId) {
+    public Applications(String fullname, String destination, String status, String health, String travellerType, String origin, String departure, String arrival, String govId, String govIdImage, String vaccCardImage) {
         this.fullname = fullname;
         this.destination = destination;
         this.status = status;
@@ -25,6 +27,8 @@ public class Applications {
         this.departure = departure;
         this.arrival = arrival;
         this.govId = govId;
+        this.govIdImage = govIdImage;
+        this.vaccCardImage = vaccCardImage;
     }
 
     public String getFullname() {
@@ -99,4 +103,19 @@ public class Applications {
         this.govId = govId;
     }
 
+    public String getGovIdImage() {
+        return govIdImage;
+    }
+
+    public void setGovIdImage(String govIdImage) {
+        this.govIdImage = govIdImage;
+    }
+
+    public String getVaccCardImage() {
+        return vaccCardImage;
+    }
+
+    public void setVaccCardImage(String vaccCardImage) {
+        this.vaccCardImage = vaccCardImage;
+    }
 }
