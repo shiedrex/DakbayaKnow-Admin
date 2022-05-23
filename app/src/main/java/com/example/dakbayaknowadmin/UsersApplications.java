@@ -30,7 +30,7 @@ public class UsersApplications extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lguupdates);
+        setContentView(R.layout.activity_usersapplications);
 
         getSupportActionBar().setTitle("Users' Applications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

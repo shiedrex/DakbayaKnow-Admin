@@ -80,7 +80,7 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
         Picasso.get().load(govIdUri).into(holder.govIdImage);
         Picasso.get().load(vaccCardUri).into(holder.vaccCardImage);
 
-        if (holder.heal.getText().toString().contains("Safe")) {
+        if (holder.heal.getText().toString().contains("Good Condition")) {
             holder.heal.setTextColor(Color.parseColor("#008000"));
         } else if (holder.heal.getText().toString().contains("Stay at Home")) {
             holder.heal.setTextColor(Color.parseColor("#FF0000"));
