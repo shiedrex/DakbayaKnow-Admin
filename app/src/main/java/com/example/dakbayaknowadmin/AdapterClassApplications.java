@@ -71,14 +71,15 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
         holder.travDate.setText(model.getDeparture());
         holder.arrivDate.setText(model.getArrival());
         holder.govid.setText(model.getGovId());
+        holder.requirementText.setText(model.getRequirement());
 
-        String govIdUri,vaccCardUri;
+        String govIdUri, requirementUri;
 
-        govIdUri=model.getGovIdImage();
-        vaccCardUri=model.getVaccCardImage();
+        govIdUri = model.getGovIdImage();
+        requirementUri = model.getRequirementImage();
 
         Picasso.get().load(govIdUri).into(holder.govIdImage);
-        Picasso.get().load(vaccCardUri).into(holder.vaccCardImage);
+        Picasso.get().load(requirementUri).into(holder.requirementImage);
 
         if (holder.heal.getText().toString().contains("Good Condition")) {
             holder.heal.setTextColor(Color.parseColor("#008000"));
@@ -98,15 +99,15 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
             holder.stat.setTextColor(Color.parseColor("#FF0000"));
         }
 
-        final boolean isExpanded = position==mExpandedPosition;
-        holder.govIdImageLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.travLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.origLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.travDateLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.arrivDateLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.govidLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.govIdImageLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.vaccCardImageLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        final boolean isExpanded = position == mExpandedPosition;
+        holder.govIdImageLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.travLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.origLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.travDateLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.arrivDateLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.govidLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.govIdImageLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.requirementImageLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         holder.itemView.setActivated(isExpanded);
 
         if (isExpanded)
@@ -115,7 +116,7 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mExpandedPosition = isExpanded ? -1:position;
+                mExpandedPosition = isExpanded ? -1 : position;
                 notifyItemChanged(previousExpandedPosition);
                 notifyItemChanged(position);
             }
@@ -132,9 +133,9 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Toast.makeText(holder.stat.getContext(), "Application Approved", Toast.LENGTH_SHORT).show();
-                                }else{
+                                } else {
                                     Toast.makeText(holder.stat.getContext(), "Error", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -152,9 +153,9 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Toast.makeText(holder.stat.getContext(), "Application Declined", Toast.LENGTH_SHORT).show();
-                                }else{
+                                } else {
                                     Toast.makeText(holder.stat.getContext(), "Error", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -164,10 +165,10 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
     }
 
     class myViewHolder extends RecyclerView.ViewHolder {
-        TextView us, des, stat, heal, trav, orig, travDate, arrivDate, govid;
-        ImageView govIdImage, vaccCardImage;
+        TextView us, des, stat, heal, trav, orig, travDate, arrivDate, govid, requirementText;
+        ImageView govIdImage, vaccCardImage, rtcprImage, requirementImage;
         Button app, dec;
-        LinearLayout travLayout, origLayout, travDateLayout, arrivDateLayout, govidLayout, govIdImageLayout, vaccCardImageLayout;
+        LinearLayout travLayout, origLayout, travDateLayout, arrivDateLayout, govidLayout, govIdImageLayout, vaccCardImageLayout, requirementImageLayout;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -182,7 +183,8 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
             arrivDate = itemView.findViewById(R.id.arrivalDate);
             govid = itemView.findViewById(R.id.govId);
             govIdImage = itemView.findViewById(R.id.govIdImage);
-            vaccCardImage = itemView.findViewById(R.id.vaccCardImage);
+            requirementImage = itemView.findViewById(R.id.requirementImage);
+            requirementText = itemView.findViewById(R.id.requirementText);
             //button
             app = itemView.findViewById(R.id.approve);
             dec = itemView.findViewById(R.id.decline);
@@ -193,7 +195,7 @@ public class AdapterClassApplications extends FirebaseRecyclerAdapter<Applicatio
             arrivDateLayout = itemView.findViewById(R.id.arrivalDateLayout);
             govidLayout = itemView.findViewById(R.id.govIdLayout);
             govIdImageLayout = itemView.findViewById(R.id.govIdImageLayout);
-            vaccCardImageLayout = itemView.findViewById(R.id.vaccCardImageLayout);
+            requirementImageLayout = itemView.findViewById(R.id.requirementImageLayout);
         }
     }
 }

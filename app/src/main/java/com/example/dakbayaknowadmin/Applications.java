@@ -12,12 +12,15 @@ public class Applications {
     private String govId;
     private String govIdImage;
     private String vaccCardImage;
+    private String requirementImage;
+    private String requirement;
 
     public Applications() {
 
     }
 
-    public Applications(String fullname, String destination, String status, String health, String travellerType, String origin, String departure, String arrival, String govId, String govIdImage, String vaccCardImage) {
+    public Applications(String fullname, String destination, String status, String health, String travellerType, String origin, String departure, String arrival,
+                        String govId, String govIdImage, String vaccCardImage, String requirementImage, String requirement) {
         this.fullname = fullname;
         this.destination = destination;
         this.status = status;
@@ -29,6 +32,8 @@ public class Applications {
         this.govId = govId;
         this.govIdImage = govIdImage;
         this.vaccCardImage = vaccCardImage;
+        this.requirementImage = requirementImage;
+        this.requirement = requirement;
     }
 
     public String getFullname() {
@@ -117,5 +122,21 @@ public class Applications {
 
     public void setVaccCardImage(String vaccCardImage) {
         this.vaccCardImage = vaccCardImage;
+    }
+
+    public String getRequirementImage() {
+        return requirementImage;
+    }
+
+    public void setRequirementImage(String requirementImage) {
+        this.requirementImage = requirementImage;
+    }
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
     }
 }

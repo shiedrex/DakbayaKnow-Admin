@@ -222,20 +222,21 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/vaccCardImageLayout"
+            android:id="@+id/requirementImageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/requirementText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nexalight"
                 android:padding="10dp"
-                android:text="Vacc Card Photo" />
+                android:text="Requirement Photo" />
 
             <ImageView
-                android:id="@+id/vaccCardImage"
+                android:id="@+id/requirementImage"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:padding="10dp" />
